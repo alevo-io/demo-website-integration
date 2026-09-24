@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kessler &amp; Voss Automobile · Fahrzeugsuche powered by ALEVO</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&amp;family=Manrope:wght@400;500;600&amp;family=Nunito:wght@400;600;700;800&amp;display=swap">
+<style>
+html{overflow-anchor:none}
+body{margin:0;background:#F6F4F0;font-family:Manrope,system-ui,sans-serif;color:#16161A}
+a{color:#16161A}a:hover{color:#5E5B55}
+.alv-in{width:100%;box-sizing:border-box;height:48px;padding:0 14px;border:1px solid #D9DCE3;border-radius:10px;font:500 15px Nunito,sans-serif;color:#0A1628;background:#FFFFFF;outline:none}
+.alv-in:focus{border-color:#F0527A;box-shadow:0 0 0 3px rgba(240,82,122,.15)}
+.alv-btn{cursor:pointer}
+.alv-btn:hover{filter:brightness(1.15)}
+.alv-chip{cursor:pointer}
+.alv-chip:hover{border-color:#0A1628}
+.alv-spin{width:16px;height:16px;border-radius:50%;border:2px solid #E4E6EB;border-top-color:#F0527A;animation:alvspin .8s linear infinite;box-sizing:border-box}
+@keyframes alvspin{to{transform:rotate(360deg)}}
+.alv-pulse{width:8px;height:8px;border-radius:50%;background:#F0527A;animation:alvpulse 1.6s ease-in-out infinite}
+@keyframes alvpulse{0%,100%{opacity:1}50%{opacity:.35}}
+@media (max-width: 1180px){
+.kv-pad,.kv-bestand{padding-left:40px!important;padding-right:40px!important}
+.kv-header,.kv-footer{padding-left:40px!important;padding-right:40px!important}
+.kv-hero{flex-direction:column!important;gap:48px!important;min-height:0!important}
+.kv-hero-text{padding-top:0!important;flex-basis:auto!important}
+.kv-widget{width:100%!important;max-width:560px}
+.kv-stack{flex-direction:column!important;gap:32px!important}
+.kv-steps{width:100%!important}
+.kv-grid2{width:100%}
+}
+@media (max-width: 860px){
+.kv-nav{display:none!important}
+.kv-grid3{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.kv-band{grid-template-columns:minmax(0,1fr)!important;gap:28px!important}
+.kv-h1{font-size:54px!important}
+}
+@media (max-width: 640px){
+.kv-pad,.kv-bestand{padding:48px 16px 56px!important}
+.kv-header{padding:0 16px!important;height:72px!important}
+.kv-footer{padding:32px 16px!important;flex-direction:column!important;gap:16px!important}
+.kv-h1{font-size:42px!important}
+.kv-h2{font-size:34px!important}
+.kv-h2b{font-size:26px!important}
+.kv-card{padding:20px!important}
+.alv-in{font-size:16px!important}
+.kv-logo{font-size:20px!important;letter-spacing:2px!important;white-space:nowrap}
+.kv-cta{font-size:13px!important}
+.kv-grid3,.kv-grid2{grid-template-columns:minmax(0,1fr)!important}
+.kv-aside{padding:28px 20px 32px!important;gap:28px!important}
+.kv-band{padding:24px 20px!important}
+}
+.kv-wrap,.kv-btns{flex-wrap:wrap}
+.kv-btns>*{min-width:0}
+.kv-sketch svg{max-width:88%;height:auto}
+</style>
+<style>html{scroll-behavior:smooth}</style>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+<div class="kv-root" style="width: 100%; min-height: 100vh; background: #F6F4F0; display: flex; flex-direction: column;">
+
+<header class="kv-header" style="height: 88px; box-sizing: border-box; padding: 0 80px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #E2DED6;">
+<div style="display: flex; flex-direction: column; gap: 2px;">
+<div class="kv-logo" style="font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; letter-spacing: 3px;">KESSLER &amp; VOSS</div>
+<div style="font-size: 11px; letter-spacing: 3px; color: #5E5B55;">AUTOMOBILE DÜSSELDORF</div>
+</div>
+<nav class="kv-nav" style="display: flex; gap: 40px; font-size: 14px; font-weight: 500;">
+<a href="#bestand" style="text-decoration: none;">Bestand</a>
+<a href="#bestand" style="text-decoration: none;">Fahrzeugsuche</a>
+<a href="#bestand" style="text-decoration: none;">Ankauf</a>
+<a href="#bestand" style="text-decoration: none;">Service</a>
+<a href="#bestand" style="text-decoration: none;">Kontakt</a>
+</nav>
+<div class="kv-cta" style="font-size: 14px; font-weight: 500; white-space: nowrap;">Termin vereinbaren</div>
+</header>
+
+<section class="kv-pad" style="box-sizing: border-box; padding: 88px 80px 96px; display: flex; flex-direction: column;">
+<div class="kv-hero" style="display: flex; gap: 96px; align-items: flex-start; min-height: 700px;">
+<div class="kv-hero-text" style="flex-grow: 1; flex-basis: 0; padding-top: 48px; display: flex; flex-direction: column; gap: 28px;">
+<div style="font-size: 12px; letter-spacing: 3px; color: #5E5B55; font-weight: 600;">EXKLUSIVE AUTOMOBILE</div>
+<h1 class="kv-h1" style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 76px; line-height: 1.02; letter-spacing: -0.5px;">Ihr nächstes Fahrzeug beginnt mit einer Anfrage.</h1>
+<p style="margin: 0; font-size: 18px; line-height: 1.6; color: #45423D; max-width: 520px;">Nennen Sie Modell und Preisvorstellung. Unsere Fahrzeugsuche prüft den Bestand und verhandelt die Konditionen direkt für Sie.</p>
+<div class="kv-wrap" style="display: flex; gap: 48px; padding-top: 24px; border-top: 1px solid #E2DED6; max-width: 520px;">
+<div style="display: flex; flex-direction: column; gap: 4px;"><div style="font-size: 13px; color: #5E5B55;">Showroom</div><div style="font-size: 15px; font-weight: 500;">[ADRESSE]</div></div>
+<div style="display: flex; flex-direction: column; gap: 4px;"><div style="font-size: 13px; color: #5E5B55;">Öffnungszeiten</div><div style="font-size: 15px; font-weight: 500;">[ÖFFNUNGSZEITEN]</div></div>
+</div>
+</div>
+
+<div class="kv-widget" id="suche" style="width: 520px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; font-family: Nunito, sans-serif; scroll-margin-top: 24px; min-height: {{slotH}}px;">
+<sc-if value="{{isModal}}" hint-placeholder-val="{{false}}"><div onClick="{{closeModal}}" aria-hidden="true" style="position: fixed; inset: 0; z-index: 1000; background: rgba(10,22,40,.55);"></div></sc-if>
+<div role="{{panelRole}}" aria-modal="{{panelModal}}" aria-label="Fahrzeugsuche" style="{{panelStyle}}">
+<div class="kv-card" style="background: #FFFFFF; border: 1px solid #E4E6EB; border-radius: 16px; padding: 28px; box-shadow: 0 1px 2px rgba(10,22,40,.04), 0 8px 24px rgba(10,22,40,.06); display: flex; flex-direction: column; gap: 22px; color: #0A1628;">
+
+<div style="display: flex; align-items: center; justify-content: space-between;">
+<div style="font-size: 20px; font-weight: 800;">Fahrzeugsuche</div>
+<div style="display: flex; align-items: center; gap: 14px;">
+<div style="display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: #4A5468;"><span style="width: 7px; height: 7px; border-radius: 50%; background: #1E9E63; display: inline-block;"></span>AI-Agent aktiv</div>
+<sc-if value="{{isModal}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{closeModal}}" aria-label="Schließen" style="width: 44px; height: 44px; margin: -10px -10px -10px 0; border: 0; border-radius: 10px; background: none; cursor: pointer; display: flex; align-items: center; justify-content: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A1628" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></sc-if>
+</div>
+</div>
+
+<div style="display: flex; gap: 6px;">
+<sc-for list="{{stepBar}}" as="s" hint-placeholder-count="3">
+<div style="{{s.style}}"></div>
+</sc-for>
+</div>
+
+<sc-if value="{{isInput}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column; gap: 18px;">
+<div style="font-size: 15px; line-height: 1.5; color: #4A5468;">Beschreiben Sie Ihr Wunschfahrzeug. Der Agent prüft den Bestand und verhandelt für Sie.</div>
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<label for="alv-q" style="font-size: 13px; font-weight: 700;">Welches Fahrzeug suchen Sie?</label>
+<input id="alv-q" class="alv-in" placeholder="z. B. Porsche 911 GT3, ab 2022, wenig Kilometer" value="{{query}}" onChange="{{onQuery}}">
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<div style="font-size: 12px; font-weight: 600; color: #4A5468;">Beispiele</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px;">
+<sc-for list="{{examples}}" as="ex" hint-placeholder-count="4">
+<button type="button" class="alv-chip" onClick="{{ex.pick}}" style="{{ex.style}}">{{ex.label}}</button>
+</sc-for>
+</div>
+</div>
+<button type="button" class="alv-btn" onClick="{{goBudget}}" style="height: 50px; border: 0; border-radius: 10px; background: #0A1628; color: #FFFFFF; font: 700 15px Nunito, sans-serif;">Weiter</button>
+</div>
+</sc-if>
+
+<sc-if value="{{isBudget}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px;">
+<div style="display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: #F5F6F8; border-radius: 10px;">
+<div style="font-size: 12px; font-weight: 600; color: #4A5468;">Produktart erfasst</div>
+<div style="font-size: 15px; font-weight: 700;">{{query}}</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<div style="font-size: 13px; font-weight: 700;">Ihre Preisvorstellung in Euro</div>
+<div style="display: flex; gap: 12px; align-items: center;">
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px;"><label for="alv-min" style="font-size: 12px; color: #4A5468;">von</label><input id="alv-min" class="alv-in" value="{{min}}" onChange="{{onMin}}"></div>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px;"><label for="alv-max" style="font-size: 12px; color: #4A5468;">bis</label><input id="alv-max" class="alv-in" value="{{max}}" onChange="{{onMax}}"></div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<div style="font-size: 13px; font-weight: 700;">Zeitrahmen</div>
+<div class="kv-wrap" style="display: flex; gap: 8px;">
+<sc-for list="{{timings}}" as="t" hint-placeholder-count="3">
+<button type="button" class="alv-chip" onClick="{{t.pick}}" style="{{t.style}}">{{t.label}}</button>
+</sc-for>
+</div>
+</div>
+<sc-if value="{{priceError}}" hint-placeholder-val="{{false}}">
+<div style="font-size: 13px; font-weight: 700; color: #9B1C2C;">Bitte geben Sie eine Preisvorstellung an.</div>
+</sc-if>
+<div class="kv-btns" style="display: flex; gap: 10px;">
+<button type="button" class="alv-chip" onClick="{{reset}}" style="height: 50px; padding: 0 20px; border: 1px solid #D9DCE3; border-radius: 10px; background: #FFFFFF; color: #0A1628; font: 700 15px Nunito, sans-serif;">Zurück</button>
+<button type="button" class="alv-btn" onClick="{{startSearch}}" style="flex-grow: 1; height: 50px; border: 0; border-radius: 10px; background: #0A1628; color: #FFFFFF; font: 700 15px Nunito, sans-serif;">Suche und Verhandlung starten</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isWorking}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 16px;">
+<div style="font-size: 15px; color: #4A5468;">Der Agent arbeitet an Ihrer Anfrage.</div>
+<div style="display: flex; flex-direction: column; gap: 14px; padding: 18px; border: 1px solid #E4E6EB; border-radius: 12px;">
+<sc-for list="{{progressItems}}" as="p" hint-placeholder-count="4">
+<div style="display: flex; align-items: center; gap: 12px;">
+<div style="width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+<sc-if value="{{p.done}}" hint-placeholder-val="{{true}}"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#0A1628"></circle><path d="M6 10.2l2.6 2.6L14 7.4" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg></sc-if>
+<sc-if value="{{p.active}}" hint-placeholder-val="{{false}}"><div class="alv-spin"></div></sc-if>
+<sc-if value="{{p.todo}}" hint-placeholder-val="{{false}}"><div style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid #D9DCE3; box-sizing: border-box;"></div></sc-if>
+</div>
+<div style="{{p.textStyle}}">{{p.label}}</div>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isFit}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px;">
+<div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+<span style="{{pillStyle}}">{{pill}}</span>
+<span style="font-size: 13px; color: #4A5468;">{{pillNote}}</span>
+</div>
+<div style="border: 1px solid #E4E6EB; border-radius: 12px; overflow: hidden;">
+<div style="height: 168px; background: #ECEAE5; display: flex; align-items: center; justify-content: center;"><sc-if value="{{car.isCoupe}}" hint-placeholder-val="{{true}}"><svg width="250" viewBox="0 0 320 130" fill="none" aria-hidden="true"><ellipse cx="162" cy="122" rx="146" ry="5" fill="#DEDAD2"></ellipse><path d="M20 100 L24 88 C30 80 60 76 96 73 L128 54 C148 43 196 41 224 51 L258 71 C284 74 300 80 304 92 L304 100" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M20 100 L60 100 A18 18 0 0 1 96 100 L228 100 A18 18 0 0 1 264 100 L304 100" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M112 71 L136 55 C154 47 192 46 214 54 L236 71 Z" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M172 72 V98" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M286 82 L298 84" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="78" cy="102" r="14" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle><circle cx="78" cy="102" r="5" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle><circle cx="246" cy="102" r="14" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle><circle cx="246" cy="102" r="5" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle></svg></sc-if><sc-if value="{{car.isSuv}}" hint-placeholder-val="{{false}}"><svg width="250" viewBox="0 0 320 130" fill="none" aria-hidden="true"><ellipse cx="162" cy="124" rx="148" ry="5" fill="#DEDAD2"></ellipse><path d="M18 104 L20 80 C22 70 34 66 60 64 L88 36 C94 30 104 28 116 28 L236 28 C248 28 256 32 262 40 L286 64 C298 66 306 72 306 84 L306 104" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M18 104 L58 104 A20 20 0 0 1 98 104 L226 104 A20 20 0 0 1 266 104 L306 104" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M98 62 L117 38 H176 V62 Z" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M184 38 H232 L254 62 H184 Z" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M180 66 V100" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M292 76 L302 76" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="78" cy="106" r="16" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle><circle cx="78" cy="106" r="6" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle><circle cx="246" cy="106" r="16" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle><circle cx="246" cy="106" r="6" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle></svg></sc-if><sc-if value="{{car.isBoxy}}" hint-placeholder-val="{{false}}"><svg width="250" viewBox="0 0 320 130" fill="none" aria-hidden="true"><ellipse cx="160" cy="124" rx="146" ry="5" fill="#DEDAD2"></ellipse><path d="M22 104 V58 C22 52 26 48 32 48 L62 48 L80 24 C82 20 86 18 92 18 L232 18 C238 18 242 22 244 28 L252 48 L290 50 C296 50 300 54 300 60 V104" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M22 104 L60 104 A20 20 0 0 1 100 104 L220 104 A20 20 0 0 1 260 104 L300 104" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M88 46 L98 26 H158 V46 Z" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M166 26 H234 L240 46 H166 Z" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M162 50 V100" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M22 70 H300" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M284 58 L296 58" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="80" cy="106" r="16" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle><circle cx="80" cy="106" r="6" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle><circle cx="240" cy="106" r="16" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle><circle cx="240" cy="106" r="6" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle></svg></sc-if></div>
+<div style="padding: 18px; display: flex; flex-direction: column; gap: 12px;">
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<div style="font-size: 18px; font-weight: 800;">{{car.name}}</div>
+<div style="font-size: 13px; color: #4A5468;">{{car.specs}}</div>
+</div>
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; padding-top: 12px; border-top: 1px solid #EEF0F3;">
+<div style="display: flex; flex-direction: column; gap: 2px;">
+<div style="font-size: 12px; color: #4A5468;">Ihre Vorstellung</div>
+<div style="font-size: 15px; font-weight: 700;">{{rangeLabel}}</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 2px; align-items: flex-end;">
+<div style="font-size: 12px; color: #4A5468;">Preis des Händlers</div>
+<div style="font-size: 24px; font-weight: 800;">{{car.priceLabel}}</div>
+</div>
+</div>
+</div>
+</div>
+<div style="padding: 14px 16px; border-radius: 10px; background: #F5F6F8; font-size: 14px; line-height: 1.5;">{{fitHint}}</div>
+<div class="kv-btns" style="display: flex; gap: 10px;">
+<button type="button" class="alv-chip" onClick="{{reset}}" style="height: 50px; padding: 0 20px; border: 1px solid #D9DCE3; border-radius: 10px; background: #FFFFFF; color: #0A1628; font: 700 15px Nunito, sans-serif;">Neue Suche</button>
+<button type="button" class="alv-btn" onClick="{{openChat}}" style="flex-grow: 1; height: 50px; border: 0; border-radius: 10px; background: #0A1628; color: #FFFFFF; font: 700 15px Nunito, sans-serif;">Account erstellen und Gespräch starten</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isPriceOff}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px;">
+<div style="display: flex; align-items: center; gap: 8px;">
+<span style="padding: 5px 10px; border-radius: 999px; background: #FCEBEC; color: #9B1C2C; font-size: 12px; font-weight: 800;">Preisrahmen passt nicht</span>
+</div>
+<div style="font-size: 15px; line-height: 1.55; color: #4A5468;">Das Fahrzeug steht im Bestand, Ihre Preisvorstellung liegt aber deutlich unter dem Rahmen von Kessler &amp; Voss. Ihre Anfrage bleibt aktiv und wird weiter abgeglichen, auch mit neuen Fahrzeugen.</div>
+<div style="display: flex; flex-direction: column; gap: 10px; padding: 16px; border: 1px solid #E4E6EB; border-radius: 12px;">
+<div style="display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 800; color: #0A1628;"><div class="alv-pulse"></div>Anfrage bleibt aktiv</div>
+<div style="display: flex; justify-content: space-between; gap: 16px; font-size: 14px;"><span style="color: #4A5468;">Fahrzeug</span><span style="font-weight: 700; text-align: right;">{{query}}</span></div>
+<div style="display: flex; justify-content: space-between; gap: 16px; font-size: 14px;"><span style="color: #4A5468;">Preisvorstellung</span><span style="font-weight: 700;">{{rangeLabel}}</span></div>
+<div style="display: flex; justify-content: space-between; gap: 16px; font-size: 14px;"><span style="color: #4A5468;">Zeitrahmen</span><span style="font-weight: 700;">{{timingLabel}}</span></div>
+</div>
+<div class="kv-btns" style="display: flex; gap: 10px;">
+<button type="button" class="alv-chip" onClick="{{reset}}" style="height: 50px; padding: 0 20px; border: 1px solid #D9DCE3; border-radius: 10px; background: #FFFFFF; color: #0A1628; font: 700 15px Nunito, sans-serif;">Neue Suche</button>
+<button type="button" class="alv-btn" onClick="{{createAccount}}" style="flex-grow: 1; height: 50px; border: 0; border-radius: 10px; background: #0A1628; color: #FFFFFF; font: 700 15px Nunito, sans-serif;">Account erstellen und Anfrage sichern</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isChat}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px;">
+<div style="display: flex; align-items: center; gap: 8px;">
+<span style="padding: 5px 10px; border-radius: 999px; background: #E6F4EC; color: #11643D; font-size: 12px; font-weight: 800;">Account erstellt</span>
+<span style="font-size: 13px; color: #4A5468;">Anfrage übernommen</span>
+</div>
+<div style="border: 1px solid #E4E6EB; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid #EEF0F3;">
+<div style="font-size: 14px; font-weight: 800;">{{car.name}}</div>
+<div style="font-size: 13px; font-weight: 700; color: #4A5468;">Kessler &amp; Voss</div>
+</div>
+<div style="padding: 16px; display: flex; flex-direction: column; gap: 12px; background: #FAFBFC;">
+<div style="font-size: 12px; line-height: 1.5; color: #4A5468; text-align: center; padding: 0 12px;">Ihre Anfrage ist mit diesem Fahrzeug verknüpft. Kontaktdaten werden erst geteilt, wenn Sie zustimmen.</div>
+<div style="align-self: flex-start; max-width: 82%; padding: 12px 14px; border-radius: 12px 12px 12px 4px; background: #FFFFFF; border: 1px solid #E4E6EB; font-size: 14px; line-height: 1.5;">Guten Tag, Ihre Anfrage zum {{car.name}} liegt uns vor. Das Fahrzeug steht bei uns im Showroom. Wann möchten Sie es sich ansehen?</div>
+<div style="align-self: flex-end; max-width: 82%; padding: 12px 14px; border-radius: 12px 12px 4px 12px; background: #0A1628; color: #FFFFFF; font-size: 14px; line-height: 1.5;">Diese Woche, am liebsten Donnerstag.</div>
+</div>
+<div style="padding: 12px 16px; border-top: 1px solid #EEF0F3; display: flex; align-items: center; gap: 10px;">
+<label for="alv-msg" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">Nachricht</label>
+<input id="alv-msg" class="alv-in" placeholder="Nachricht schreiben …" style="height: 42px;">
+</div>
+</div>
+<div class="kv-btns" style="display: flex; gap: 10px;">
+<button type="button" class="alv-chip" onClick="{{reset}}" style="height: 50px; padding: 0 20px; border: 1px solid #D9DCE3; border-radius: 10px; background: #FFFFFF; color: #0A1628; font: 700 15px Nunito, sans-serif;">Neue Suche</button>
+<button type="button" class="alv-btn" onClick="{{closeModal}}" style="flex-grow: 1; height: 50px; border: 0; border-radius: 10px; background: #0A1628; color: #FFFFFF; font: 700 15px Nunito, sans-serif; cursor: pointer;">Zum ALEVO-Account</button>
+</div>
+<div style="font-size: 12px; line-height: 1.5; color: #4A5468; text-align: center;">Anfrage, Fahrzeug und Gespräch liegen in Ihrem ALEVO-Account. Ihre Suchkriterien werden übernommen. Neue Matches gehen direkt in Ihrem Account ein.</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isNoMatch}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px;">
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<div style="font-size: 18px; font-weight: 800;">Aktuell kein passendes Fahrzeug</div>
+<div style="font-size: 15px; line-height: 1.55; color: #4A5468;">Ihr Eintrag bleibt aktiv. Der Agent verhandelt dauerhaft weiter und meldet sich, sobald ein passendes Fahrzeug verfügbar ist.</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px; padding: 16px; border: 1px solid #E4E6EB; border-radius: 12px;">
+<div style="display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 800; color: #0A1628;"><div class="alv-pulse"></div>Weiterverhandlung aktiv</div>
+<div style="display: flex; justify-content: space-between; gap: 16px; font-size: 14px;"><span style="color: #4A5468;">Fahrzeug</span><span style="font-weight: 700; text-align: right;">{{query}}</span></div>
+<div style="display: flex; justify-content: space-between; gap: 16px; font-size: 14px;"><span style="color: #4A5468;">Preisvorstellung</span><span style="font-weight: 700;">{{min}} bis {{max}} €</span></div>
+<div style="display: flex; justify-content: space-between; gap: 16px; font-size: 14px;"><span style="color: #4A5468;">Zeitrahmen</span><span style="font-weight: 700;">{{timingLabel}}</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<button type="button" class="alv-btn" onClick="{{createAccount}}" style="height: 50px; border: 0; border-radius: 10px; background: #0A1628; color: #FFFFFF; font: 700 15px Nunito, sans-serif;">Mit einem Klick ALEVO-Account erstellen</button>
+<div style="font-size: 12px; line-height: 1.5; color: #4A5468; text-align: center;">Ihre Suchkriterien werden übernommen. Neue Matches gehen direkt in Ihrem Account ein.</div>
+</div>
+<button type="button" onClick="{{reset}}" style="align-self: center; border: 0; background: none; padding: 8px; cursor: pointer; font: 600 14px Nunito, sans-serif; color: #0A1628; text-decoration: underline;">Neue Suche</button>
+</div>
+</sc-if>
+
+<sc-if value="{{isAccount}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px;">
+<div style="display: flex; align-items: center; gap: 12px;">
+<svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true"><circle cx="18" cy="18" r="17" fill="#E6F4EC"></circle><path d="M11 18.5l4.6 4.6L25 13.6" stroke="#11643D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<div style="font-size: 18px; font-weight: 800;">Ihr ALEVO-Account ist erstellt</div>
+</div>
+<div style="font-size: 15px; line-height: 1.55; color: #4A5468;">Ihre Anfrage ist gespeichert und wird weiter verhandelt. Sobald ein Match eingeht, finden Sie es in Ihrem Account und werden benachrichtigt.</div>
+<div style="display: flex; flex-direction: column; gap: 10px; padding: 16px; background: #F5F6F8; border-radius: 12px;">
+<div style="display: flex; justify-content: space-between; gap: 16px; font-size: 14px;"><span style="color: #4A5468;">Aktive Anfrage</span><span style="font-weight: 700; text-align: right;">{{query}}</span></div>
+<div style="display: flex; justify-content: space-between; gap: 16px; font-size: 14px;"><span style="color: #4A5468;">Status</span><span style="font-weight: 700;">Verhandlung läuft</span></div>
+</div>
+<div class="kv-btns" style="display: flex; gap: 10px;">
+<button type="button" class="alv-chip" onClick="{{reset}}" style="height: 50px; padding: 0 20px; border: 1px solid #D9DCE3; border-radius: 10px; background: #FFFFFF; color: #0A1628; font: 700 15px Nunito, sans-serif;">Neue Suche</button>
+<button type="button" class="alv-btn" onClick="{{closeModal}}" style="flex-grow: 1; height: 50px; border: 0; border-radius: 10px; background: #0A1628; color: #FFFFFF; font: 700 15px Nunito, sans-serif; cursor: pointer;">Zum ALEVO-Account</button>
+</div>
+</div>
+</sc-if>
+
+</div>
+<div style="display: flex; align-items: center; justify-content: flex-end; gap: 6px; padding-right: 4px;">
+<span style="font-size: 11px; color: #6B7280; font-family: Nunito, sans-serif;">powered by</span>
+<img src="data:image/png;base64,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" alt="ALEVO" style="height: 12px; width: auto; display: block;">
+</div>
+</div>
+</div>
+</div>
+
+
+</section>
+
+<section class="kv-pad kv-bestand" id="bestand" style="box-sizing: border-box; padding: 72px 80px 88px; background: #FFFFFF; border-top: 1px solid #E2DED6; display: flex; flex-direction: column; gap: 36px;">
+<div class="kv-wrap" style="display: flex; align-items: flex-end; justify-content: space-between;">
+<h2 class="kv-h2" style="margin: 0; font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 44px;">Ausgewählter Bestand</h2>
+<a href="#bestand" style="font-size: 14px; font-weight: 600;">Gesamten Bestand ansehen</a>
+</div>
+<div class="kv-grid3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px;">
+<sc-for list="{{featured}}" as="c" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; gap: 14px;">
+<div class="kv-sketch" style="height: 240px; background: #ECEAE5; display: flex; align-items: center; justify-content: center;"><sc-if value="{{c.isCoupe}}" hint-placeholder-val="{{true}}"><svg width="320" viewBox="0 0 320 130" fill="none" aria-hidden="true"><ellipse cx="162" cy="122" rx="146" ry="5" fill="#DEDAD2"></ellipse><path d="M20 100 L24 88 C30 80 60 76 96 73 L128 54 C148 43 196 41 224 51 L258 71 C284 74 300 80 304 92 L304 100" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M20 100 L60 100 A18 18 0 0 1 96 100 L228 100 A18 18 0 0 1 264 100 L304 100" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M112 71 L136 55 C154 47 192 46 214 54 L236 71 Z" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M172 72 V98" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M286 82 L298 84" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="78" cy="102" r="14" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle><circle cx="78" cy="102" r="5" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle><circle cx="246" cy="102" r="14" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle><circle cx="246" cy="102" r="5" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle></svg></sc-if><sc-if value="{{c.isSuv}}" hint-placeholder-val="{{false}}"><svg width="320" viewBox="0 0 320 130" fill="none" aria-hidden="true"><ellipse cx="162" cy="124" rx="148" ry="5" fill="#DEDAD2"></ellipse><path d="M18 104 L20 80 C22 70 34 66 60 64 L88 36 C94 30 104 28 116 28 L236 28 C248 28 256 32 262 40 L286 64 C298 66 306 72 306 84 L306 104" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M18 104 L58 104 A20 20 0 0 1 98 104 L226 104 A20 20 0 0 1 266 104 L306 104" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M98 62 L117 38 H176 V62 Z" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M184 38 H232 L254 62 H184 Z" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M180 66 V100" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M292 76 L302 76" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="78" cy="106" r="16" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle><circle cx="78" cy="106" r="6" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle><circle cx="246" cy="106" r="16" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle><circle cx="246" cy="106" r="6" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle></svg></sc-if><sc-if value="{{c.isBoxy}}" hint-placeholder-val="{{false}}"><svg width="320" viewBox="0 0 320 130" fill="none" aria-hidden="true"><ellipse cx="160" cy="124" rx="146" ry="5" fill="#DEDAD2"></ellipse><path d="M22 104 V58 C22 52 26 48 32 48 L62 48 L80 24 C82 20 86 18 92 18 L232 18 C238 18 242 22 244 28 L252 48 L290 50 C296 50 300 54 300 60 V104" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M22 104 L60 104 A20 20 0 0 1 100 104 L220 104 A20 20 0 0 1 260 104 L300 104" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M88 46 L98 26 H158 V46 Z" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M166 26 H234 L240 46 H166 Z" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M162 50 V100" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M22 70 H300" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M284 58 L296 58" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="80" cy="106" r="16" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle><circle cx="80" cy="106" r="6" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle><circle cx="240" cy="106" r="16" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle><circle cx="240" cy="106" r="6" stroke="#8C877D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></circle></svg></sc-if></div>
+<div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 16px;">
+<div style="display: flex; flex-direction: column; gap: 4px;"><div style="font-size: 18px; font-weight: 600;">{{c.name}}</div><div style="font-size: 15px; font-weight: 600; color: #16161A;">{{c.priceLabel}}</div></div>
+<button type="button" onClick="{{c.ask}}" style="flex-shrink: 0; height: 44px; padding: 0 16px; border: 1px solid #16161A; border-radius: 999px; display: flex; align-items: center; font-size: 13px; font-weight: 600; text-decoration: none; color: #16161A; background: none; cursor: pointer; font-family: inherit;">Mit Agent anfragen</button>
+</div>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section class="kv-pad" style="box-sizing: border-box; padding: 88px 80px 96px; border-top: 1px solid #E2DED6;">
+<aside class="kv-aside" aria-label="So funktioniert die ALEVO Fahrzeugsuche" style="background: #FFFFFF; border: 1px solid #E2DED6; border-radius: 16px; padding: 48px 56px 56px; display: flex; flex-direction: column; gap: 40px; font-family: Nunito, sans-serif; color: #0A1628;">
+<div class="kv-stack" style="display: flex; justify-content: space-between; align-items: flex-start; gap: 48px;">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px;">
+<div style="display: flex; align-items: center; gap: 10px;"><span style="padding: 5px 12px; border-radius: 999px; background: #F5F6F8; border: 1px solid #E4E6EB; font-size: 12px; font-weight: 800; letter-spacing: 0.5px;">Info für Händler</span></div>
+<h2 class="kv-h2b" style="margin: 0; font-size: 34px; line-height: 1.2; font-weight: 800; letter-spacing: -0.3px;">Ihr Bestand wird gefunden. Auch Wochen nach der Anfrage.</h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #4A5468;">Die Fahrzeugsuche durchsucht das Sortiment, das Sie bei ALEVO hochgeladen haben. Jede Anfrage wird verarbeitet, verhandelt und gespeichert, auch wenn gerade kein passendes Fahrzeug im Bestand ist.</p>
+</div>
+<img src="data:image/png;base64,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" alt="ALEVO" style="height: 22px; width: auto; display: block; margin-top: 8px;">
+</div>
+
+<div class="kv-band" style="background: #0A1628; color: #FFFFFF; border-radius: 12px; padding: 32px 36px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px;">
+<div style="display: flex; gap: 16px; align-items: flex-start;">
+<div style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 10px; background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2.5"></circle><circle cx="4.5" cy="5" r="2"></circle><circle cx="19.5" cy="5" r="2"></circle><circle cx="4.5" cy="19" r="2"></circle><circle cx="19.5" cy="19" r="2"></circle><path d="M6 6.4l4.2 4M18 6.4l-4.2 4M6 17.6l4.2-4M18 17.6l-4.2-4"></path></svg></div>
+<div style="display: flex; flex-direction: column; gap: 6px;">
+<div style="font-size: 18px; font-weight: 800;">Gefunden auf Ihrer Website und auf der ALEVO-Plattform</div>
+<div style="font-size: 14.5px; line-height: 1.6; color: #C9D0DC;">Ihr Sortiment wird nicht nur hier gefunden, sondern auch auf der ALEVO-Plattform von jedem Nutzer, der nach passenden Fahrzeugen sucht. Mit einem Angebot erreichen Sie Ihre Websitebesucher und alle ALEVO-Nutzer.</div>
+</div>
+</div>
+<div style="display: flex; gap: 16px; align-items: flex-start;">
+<div style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 10px; background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="9" rx="1.5"></rect><rect x="13.5" y="3" width="7.5" height="5" rx="1.5"></rect><rect x="13.5" y="11" width="7.5" height="10" rx="1.5"></rect><rect x="3" y="15" width="7.5" height="6" rx="1.5"></rect></svg></div>
+<div style="display: flex; flex-direction: column; gap: 6px;">
+<div style="font-size: 18px; font-weight: 800;">Ein Account, ein Dashboard</div>
+<div style="font-size: 14.5px; line-height: 1.6; color: #C9D0DC;">Sortiment, Anfragen und Verhandlungen aus Website und ALEVO-Plattform organisieren und bearbeiten Sie an einer Stelle.</div>
+</div>
+</div>
+</div>
+
+<div class="kv-stack" style="display: flex; gap: 56px; align-items: flex-start;">
+<div class="kv-steps" style="width: 420px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px;">
+<div style="font-size: 13px; font-weight: 800; letter-spacing: 1px; color: #4A5468;">SO FUNKTIONIERT ES</div>
+<div style="display: flex; flex-direction: column; gap: 0;">
+<div style="display: flex; gap: 16px; padding: 18px 0; border-top: 1px solid #EEF0F3;"><div style="width: 32px; flex-shrink: 0; font-size: 15px; font-weight: 800; color: #F0527A;">01</div><div style="display: flex; flex-direction: column; gap: 4px;"><div style="font-size: 16px; font-weight: 800;">Sortiment durchsuchen</div><div style="font-size: 14px; line-height: 1.55; color: #4A5468;">Kunden nennen Modell, Preisvorstellung und Zeitrahmen. Die Suche prüft Ihr bei ALEVO hochgeladenes Sortiment.</div></div></div>
+<div style="display: flex; gap: 16px; padding: 18px 0; border-top: 1px solid #EEF0F3;"><div style="width: 32px; flex-shrink: 0; font-size: 15px; font-weight: 800; color: #F0527A;">02</div><div style="display: flex; flex-direction: column; gap: 4px;"><div style="font-size: 16px; font-weight: 800;">Anfrage im Dashboard</div><div style="font-size: 14px; line-height: 1.55; color: #4A5468;">Jede Anfrage geht in Ihrem ALEVO-Dashboard ein und schärft zugleich den Agenten Ihres Produkts in ALEVO.</div></div></div>
+<div style="display: flex; gap: 16px; padding: 18px 0; border-top: 1px solid #EEF0F3;"><div style="width: 32px; flex-shrink: 0; font-size: 15px; font-weight: 800; color: #F0527A;">03</div><div style="display: flex; flex-direction: column; gap: 4px;"><div style="font-size: 16px; font-weight: 800;">Nachfrage erkennen</div><div style="font-size: 14px; line-height: 1.55; color: #4A5468;">Sie sehen, welche Autos und Modelle Ihre Kunden suchen und welche Preise sie sich vorstellen.</div></div></div>
+<div style="display: flex; gap: 16px; padding: 18px 0; border-top: 1px solid #EEF0F3; border-bottom: 1px solid #EEF0F3;"><div style="width: 32px; flex-shrink: 0; font-size: 15px; font-weight: 800; color: #F0527A;">04</div><div style="display: flex; flex-direction: column; gap: 4px;"><div style="font-size: 16px; font-weight: 800;">Kein Match, kein Verlust</div><div style="font-size: 14px; line-height: 1.55; color: #4A5468;">Die Anfrage bleibt erhalten und wird mit neuen Einträgen in der ALEVO-Datenbank abgeglichen. Ein Kunde kann noch Wochen später gematcht werden.</div></div></div>
+</div>
+</div>
+
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 20px;">
+<div style="font-size: 13px; font-weight: 800; letter-spacing: 1px; color: #4A5468;">IHRE VORTEILE</div>
+<div class="kv-grid2" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
+
+<div style="padding: 20px; border: 1px solid #E4E6EB; border-radius: 12px; display: flex; gap: 14px;"><div style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 9px; background: #F5F6F8; display: flex; align-items: center; justify-content: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A1628" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l1.5-5h15L21 9"></path><path d="M4 9v11h16V9"></path><path d="M9 20v-6h6v6"></path></svg></div><div style="display: flex; flex-direction: column; gap: 4px;"><div style="font-size: 15px; font-weight: 800;">Dauerhaftes Angebot</div><div style="font-size: 13.5px; line-height: 1.5; color: #4A5468;">Ihre Fahrzeuge bleiben für jede passende Anfrage auffindbar, nicht nur während des Website-Besuchs.</div></div></div>
+
+<div style="padding: 20px; border: 1px solid #E4E6EB; border-radius: 12px; display: flex; gap: 14px;"><div style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 9px; background: #F5F6F8; display: flex; align-items: center; justify-content: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A1628" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></div><div style="display: flex; flex-direction: column; gap: 4px;"><div style="font-size: 15px; font-weight: 800;">Sales-Agent rund um die Uhr</div><div style="font-size: 13.5px; line-height: 1.5; color: #4A5468;">Der Agent arbeitet 24/7, verhandelt innerhalb Ihrer Preisgrenzen und greift auch nachträglich.</div></div></div>
+
+<div style="padding: 20px; border: 1px solid #E4E6EB; border-radius: 12px; display: flex; gap: 14px;"><div style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 9px; background: #F5F6F8; display: flex; align-items: center; justify-content: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A1628" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12l-8 8-9-9V3h8z"></path><circle cx="7.5" cy="7.5" r="1.5"></circle></svg></div><div style="display: flex; flex-direction: column; gap: 4px;"><div style="font-size: 15px; font-weight: 800;">Feedback auf Preise und Angebot</div><div style="font-size: 13.5px; line-height: 1.5; color: #4A5468;">Preisvorstellungen der Kunden zeigen, wo Ihre Preise über der Nachfrage liegen und welche Ausstattung gefragt ist.</div></div></div>
+
+<div style="padding: 20px; border: 1px solid #E4E6EB; border-radius: 12px; display: flex; gap: 14px;"><div style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 9px; background: #F5F6F8; display: flex; align-items: center; justify-content: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A1628" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L5 14h6l-1 7 8-11h-6z"></path></svg></div><div style="display: flex; flex-direction: column; gap: 4px;"><div style="font-size: 15px; font-weight: 800;">Sofortige Reaktion</div><div style="font-size: 13.5px; line-height: 1.5; color: #4A5468;">Anfragen am Abend oder am Wochenende werden direkt bearbeitet, nicht erst am nächsten Werktag.</div></div></div>
+
+<div style="padding: 20px; border: 1px solid #E4E6EB; border-radius: 12px; display: flex; gap: 14px;"><div style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 9px; background: #F5F6F8; display: flex; align-items: center; justify-content: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A1628" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></div><div style="display: flex; flex-direction: column; gap: 4px;"><div style="font-size: 15px; font-weight: 800;">Kein Absprung bei null Treffern</div><div style="font-size: 13.5px; line-height: 1.5; color: #4A5468;">Statt einer leeren Ergebnisseite bekommt der Kunde eine aktive Suche. Der Kontakt bleibt bei Ihnen.</div></div></div>
+
+<div style="padding: 20px; border: 1px solid #E4E6EB; border-radius: 12px; display: flex; gap: 14px;"><div style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 9px; background: #F5F6F8; display: flex; align-items: center; justify-content: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A1628" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"></circle><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"></path><path d="M16 11l2 2 4-4"></path></svg></div><div style="display: flex; flex-direction: column; gap: 4px;"><div style="font-size: 15px; font-weight: 800;">Vorqualifizierte Leads</div><div style="font-size: 13.5px; line-height: 1.5; color: #4A5468;">Modell, Budget und Zeitrahmen liegen vor dem ersten Gespräch vor. Ihr Verkauf spricht mit passenden Interessenten.</div></div></div>
+
+<div style="padding: 20px; border: 1px solid #E4E6EB; border-radius: 12px; display: flex; gap: 14px;"><div style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 9px; background: #F5F6F8; display: flex; align-items: center; justify-content: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A1628" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"></path><path d="M15 7h6v6"></path></svg></div><div style="display: flex; flex-direction: column; gap: 4px;"><div style="font-size: 15px; font-weight: 800;">Einkauf nach Nachfrage</div><div style="font-size: 13.5px; line-height: 1.5; color: #4A5468;">Häufig gesuchte Modelle ohne Treffer zeigen, welche Fahrzeuge Sie gezielt ankaufen sollten.</div></div></div>
+
+<div style="padding: 20px; border: 1px solid #E4E6EB; border-radius: 12px; display: flex; gap: 14px;"><div style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 9px; background: #F5F6F8; display: flex; align-items: center; justify-content: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0A1628" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18"></path><path d="M12 3c2.5 2.5 3.5 5.5 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-5.5-3.5-9s1-6.5 3.5-9z"></path></svg></div><div style="display: flex; flex-direction: column; gap: 4px;"><div style="font-size: 15px; font-weight: 800;">Europäische Infrastruktur</div><div style="font-size: 13.5px; line-height: 1.5; color: #4A5468;">Betrieb auf Servern in der EU. Anfragen und Kundendaten bleiben in Europa.</div></div></div>
+
+</div>
+<div style="padding: 20px 22px; border-radius: 12px; background: #F5F6F8; font-size: 14px; line-height: 1.6; color: #0A1628;"><strong style="font-weight: 800;">Was der Agent nicht tut:</strong> Er verhandelt keinen Preis und gibt keinen Nachlass. Er prüft, ob die Preisvorstellung des Kunden zu Ihrem hinterlegten Rahmen passt, mit einer Toleranz von fünf Prozent nach unten. Über den Preis sprechen Sie selbst, im Chat.</div>
+</div>
+</div>
+</aside>
+</section>
+
+<footer class="kv-footer" style="flex-grow: 1; box-sizing: border-box; padding: 40px 80px; background: #16161A; color: #CFCBC3; display: flex; justify-content: space-between; align-items: flex-start; font-size: 13px;">
+<div style="font-family: 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 3px; color: #FFFFFF;">KESSLER &amp; VOSS</div>
+<div style="display: flex; gap: 32px;"><span>Impressum</span><span>Datenschutz</span><span>Kontakt</span></div>
+</footer>
+
+</div>
+</template>
+<script>
+(function () {
+  // Minimal runtime: renders the same template and logic as the prototype.
+  var tpl = document.getElementById('tpl');
+  var mount = document.getElementById('app');
+  var comp, queued = false;
+  window.DCLogic = function (props) { this.props = props || {}; this.state = {}; };
+  DCLogic.prototype.setState = function (o) {
+    Object.assign(this.state, typeof o === 'function' ? o(this.state) : o);
+    schedule();
+  };
+  DCLogic.prototype.forceUpdate = function () { schedule(); };
+  function schedule() { if (queued) return; queued = true; Promise.resolve().then(function () { queued = false; render(); }); }
+  var HOLE = /\{\{\s*([^}]+?)\s*\}\}/g;
+  function look(path, scope) {
+    if (path === 'true') return true; if (path === 'false') return false;
+    if (/^-?\d+(\.\d+)?$/.test(path)) return parseFloat(path);
+    var parts = path.split('.'), v = scope;
+    for (var i = 0; i < parts.length; i++) { if (v == null) return undefined; v = v[parts[i]]; }
+    return v;
+  }
+  function whole(s) { var m = /^\s*\{\{\s*([^}]+?)\s*\}\}\s*$/.exec(s); return m ? m[1] : null; }
+  function interp(s, scope) { return s.replace(HOLE, function (_, p) { var v = look(p, scope); return v == null ? '' : String(v); }); }
+  function build(node, scope, out) {
+    if (node.nodeType === 3) { out.push(document.createTextNode(interp(node.nodeValue, scope))); return; }
+    if (node.nodeType !== 1) return;
+    var tag = node.localName;
+    if (tag === 'sc-if') {
+      var w = whole(node.getAttribute('value') || '');
+      if (w && look(w, scope)) kids(node, scope, out);
+      return;
+    }
+    if (tag === 'sc-for') {
+      var list = look(whole(node.getAttribute('list') || '') || '', scope) || [];
+      var as = node.getAttribute('as') || 'item';
+      list.forEach(function (it, i) { var s = Object.create(scope); s[as] = it; s.$index = i; kids(node, s, out); });
+      return;
+    }
+    var el = node.cloneNode(false);
+    Array.prototype.slice.call(node.attributes).forEach(function (a) {
+      var n = a.name, val = a.value;
+      if (n.indexOf('hint-') === 0) { el.removeAttribute(n); return; }
+      if (n === 'onclick' || n === 'onchange') {
+        el.removeAttribute(n);
+        var fn = look(whole(val) || '', scope), type = n === 'onclick' ? 'click' : 'input';
+        if (typeof fn === 'function') {
+          el.__h = el.__h || {}; el.__h[type] = fn;
+          el.addEventListener(type, function (e) { var h = this.__h && this.__h[e.type]; if (h) h(e); });
+        }
+        return;
+      }
+      if (val.indexOf('{{') < 0) return;
+      var v = interp(val, scope);
+      if (n === 'value') { el.value = v; el.setAttribute('value', v); } else el.setAttribute(n, v);
+    });
+    var inner = []; kids(node, scope, inner);
+    inner.forEach(function (c) { el.appendChild(c); });
+    if (el.localName === 'input' && el.hasAttribute('value')) el.value = el.getAttribute('value');
+    out.push(el);
+  }
+  function kids(node, scope, out) { var c = node.childNodes; for (var i = 0; i < c.length; i++) build(c[i], scope, out); }
+  // Patch the live DOM in place so inputs keep focus and the page keeps its scroll position.
+  function sameKind(a, b) { return a.nodeType === b.nodeType && a.nodeName === b.nodeName; }
+  function patchNode(o, n) {
+    if (o.nodeType === 3) { if (o.nodeValue !== n.nodeValue) o.nodeValue = n.nodeValue; return; }
+    var i, at;
+    for (i = o.attributes.length - 1; i >= 0; i--) { at = o.attributes[i].name; if (!n.hasAttribute(at)) o.removeAttribute(at); }
+    for (i = 0; i < n.attributes.length; i++) { at = n.attributes[i]; if (o.getAttribute(at.name) !== at.value) o.setAttribute(at.name, at.value); }
+    if (n.__h) {
+      if (!o.__h) { o.__h = {}; Object.keys(n.__h).forEach(function (t) { o.addEventListener(t, function (e) { var h = this.__h && this.__h[e.type]; if (h) h(e); }); }); }
+      else Object.keys(n.__h).forEach(function (t) { if (!(t in o.__h)) o.addEventListener(t, function (e) { var h = this.__h && this.__h[e.type]; if (h) h(e); }); });
+      o.__h = n.__h;
+    } else if (o.__h) o.__h = {};
+    if (o.localName === 'input' && o.value !== n.value) o.value = n.value;
+    patchChildren(o, Array.prototype.slice.call(n.childNodes));
+  }
+  function patchChildren(parent, next) {
+    var cur = parent.childNodes, i;
+    for (i = 0; i < next.length; i++) {
+      var o = cur[i];
+      if (!o) parent.appendChild(next[i]);
+      else if (sameKind(o, next[i])) patchNode(o, next[i]);
+      else parent.replaceChild(next[i], o);
+    }
+    while (cur.length > next.length) parent.removeChild(cur[cur.length - 1]);
+  }
+  function render() {
+    var vals = comp.renderVals(), out = [];
+    kids(tpl.content, vals, out);
+    patchChildren(mount, out);
+  }
+  window.__start = function (C) { comp = new C({}); render(); };
+})();
+</script>
+<script>
+// One inventory feeds both the agent and the Bestand section.
+// price = the dealer's stored price frame; tolerance 5 % downwards.
+var INVENTORY = [
+  { id: 'gt3', name: 'Porsche 911 GT3 (992)', body: 'coupe', featured: false, price: 199900,
+    specs: 'Erstzulassung 2023 · 11.800 km · Kreide · PDK', keys: ['911', 'gt3', 'porsche'] },
+  { id: 'g63', name: 'Mercedes-AMG G 63', body: 'boxy', featured: false, price: 174900,
+    specs: 'Erstzulassung 2022 · 24.300 km · Obsidianschwarz · Night-Paket', keys: ['g 63', 'g63', 'g-klasse', 'g klasse'] },
+  { id: 'bcgt', name: 'Bentley Continental GT', body: 'coupe', featured: true, price: 239000,
+    specs: 'Erstzulassung 2024 · 6.900 km · Onyx · Mulliner', keys: ['bentley', 'continental'] },
+  { id: 'db12', name: 'Aston Martin DB12', body: 'coupe', featured: true, price: 219000,
+    specs: 'Erstzulassung 2024 · 4.200 km · Magnetic Silver', keys: ['aston', 'db12', 'db 12'] },
+  { id: 'cull', name: 'Rolls-Royce Cullinan', body: 'suv', featured: true, price: 389000,
+    specs: 'Erstzulassung 2023 · 9.600 km · Arctic White', keys: ['rolls', 'cullinan'] }
+];
+var TOLERANCE = 0.05;
+var EXAMPLES = [
+  { label: 'Porsche 911 GT3', query: 'Porsche 911 GT3, ab Baujahr 2022, unter 20.000 km', min: '185.000', max: '195.000' },
+  { label: 'Mercedes-AMG G 63', query: 'Mercedes-AMG G 63, Schwarz, ab Baujahr 2021', min: '160.000', max: '180.000' },
+  { label: 'Ferrari F40', query: 'Ferrari F40, unfallfrei, Europa-Auslieferung', min: '2.300.000', max: '2.600.000' },
+  { label: 'Lamborghini Revuelto', query: 'Lamborghini Revuelto, Verde Selvans', min: '480.000', max: '520.000' }
+];
+var TIMINGS = ['Sofort', 'In 3 Monaten', 'Flexibel'];
+var STEPS_FOUND = ['Produktart und Preisvorstellung erfasst', 'Bestand von Kessler & Voss durchsucht', 'Passendes Fahrzeug gefunden', 'Preisrahmen abgeglichen'];
+var STEPS_NONE = ['Produktart und Preisvorstellung erfasst', 'Bestand von Kessler & Voss durchsucht', 'Kein passendes Fahrzeug im aktuellen Bestand', 'Anfrage für dauerhafte Verhandlung vorbereitet'];
+var FIT = {
+  a: { pill: 'Passt zusammen', note: 'Preisvorstellung und Angebot liegen im selben Rahmen',
+       hint: 'Kessler & Voss kann das Gespräch direkt aufnehmen. Über den Preis sprechen Sie mit dem Händler, nicht mit dem Agenten.',
+       style: 'background: #E6F4EC; color: #11643D;' },
+  b: { pill: 'Liegt nah beieinander', note: 'Ihre Vorstellung liegt knapp unter dem Rahmen des Händlers',
+       hint: 'Der Abstand ist gering genug für ein Gespräch. Der Agent verhandelt nicht, er hat nur abgeglichen.',
+       style: 'background: #FBF1DE; color: #7A4B00;' }
+};
+var CHIP = 'height: 36px; padding: 0 14px; border-radius: 999px; font: 600 13px Nunito, sans-serif; ';
+var PILL = 'padding: 5px 10px; border-radius: 999px; font-size: 12px; font-weight: 800; ';
+function num(v) { var d = String(v || '').replace(/[^\d]/g, ''); return d ? parseInt(d, 10) : null; }
+function fmt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+function findCar(q) {
+  var t = String(q || '').toLowerCase();
+  for (var i = 0; i < INVENTORY.length; i++) {
+    for (var k = 0; k < INVENTORY[i].keys.length; k++) { if (t.indexOf(INVENTORY[i].keys[k]) >= 0) return INVENTORY[i]; }
+  }
+  return null;
+}
+function view(c) {
+  return { id: c.id, name: c.name, specs: c.specs, priceLabel: fmt(c.price) + ' €',
+    isCoupe: c.body === 'coupe', isSuv: c.body === 'suv', isBoxy: c.body === 'boxy' };
+}
+// Compare the upper end of the customer's frame with the dealer's frame.
+function outcome(car, min, max) {
+  if (!car) return 'none';
+  var hi = max != null ? max : min;
+  if (hi >= car.price) return 'a';
+  if (hi >= car.price * (1 - TOLERANCE)) return 'b';
+  return 'c';
+}
+var FRESH = { modal: false, slotH: 0, step: 'input', ex: null, query: '', min: '', max: '', timing: 2, progress: 0, carId: null, result: null, priceError: false };
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = Object.assign({}, FRESH); }
+  componentWillUnmount() { if (this.timer) clearInterval(this.timer); }
+  stop() { if (this.timer) { clearInterval(this.timer); this.timer = null; } }
+  renderVals() {
+    var st = this.state, self = this;
+    var car = null;
+    for (var i = 0; i < INVENTORY.length; i++) { if (INVENTORY[i].id === st.carId) car = INVENTORY[i]; }
+    var result = st.step === 'fit' || st.step === 'priceoff' || st.step === 'nomatch' || st.step === 'account' || st.step === 'chat';
+    var stepIndex = st.step === 'input' ? 0 : st.step === 'budget' ? 1 : 2;
+    var stepBar = [0, 1, 2].map(function (i) {
+      var on = i <= stepIndex && (i < 2 || result || st.step === 'working');
+      return { style: 'flex-grow: 1; height: 3px; border-radius: 2px; background: ' + (on ? '#F0527A' : '#E4E6EB') + ';' };
+    });
+    var examples = EXAMPLES.map(function (ex, i) {
+      var sel = st.ex === i;
+      return { label: ex.label,
+        style: CHIP + (sel ? 'border: 1px solid #0A1628; background: #0A1628; color: #FFFFFF;' : 'border: 1px solid #D9DCE3; background: #FFFFFF; color: #0A1628;'),
+        pick: function () { self.setState({ ex: i, query: ex.query, min: ex.min, max: ex.max }); } };
+    });
+    var timings = TIMINGS.map(function (label, i) {
+      var sel = st.timing === i;
+      return { label: label,
+        style: CHIP + (sel ? 'border: 1px solid #0A1628; background: #0A1628; color: #FFFFFF;' : 'border: 1px solid #D9DCE3; background: #FFFFFF; color: #0A1628;'),
+        pick: function () { self.setState({ timing: i }); } };
+    });
+    var list = car ? STEPS_FOUND : STEPS_NONE;
+    var progressItems = list.map(function (label, i) {
+      var done = i < st.progress, active = i === st.progress;
+      return { label: label, done: done, active: active, todo: !done && !active,
+        textStyle: 'font-size: 14px; font-weight: ' + (active ? '700' : '600') + '; color: ' + (done || active ? '#0A1628' : '#8A93A3') + ';' };
+    });
+    var lo = num(st.min), hi = num(st.max);
+    var rangeLabel = lo != null && hi != null ? fmt(lo) + ' bis ' + fmt(hi) + ' €' : lo != null ? 'ab ' + fmt(lo) + ' €' : hi != null ? 'bis ' + fmt(hi) + ' €' : '';
+    var fit = FIT[st.result] || FIT.a;
+    var featured = INVENTORY.filter(function (c) { return c.featured; }).map(function (c) {
+      var v = view(c);
+      v.ask = function () {
+        self.stop();
+        var slot = document.getElementById('suche');
+        self.setState(Object.assign({}, FRESH, { step: 'budget', query: c.name, modal: true, slotH: slot ? slot.offsetHeight : 0 }));
+      };
+      return v;
+    });
+    return {
+      isInput: st.step === 'input', isBudget: st.step === 'budget', isWorking: st.step === 'working',
+      isFit: st.step === 'fit', isPriceOff: st.step === 'priceoff', isChat: st.step === 'chat',
+      isNoMatch: st.step === 'nomatch', isAccount: st.step === 'account',
+      stepBar: stepBar, examples: examples, timings: timings, progressItems: progressItems, featured: featured,
+      query: st.query, min: st.min, max: st.max, rangeLabel: rangeLabel, timingLabel: TIMINGS[st.timing],
+      priceError: st.priceError,
+      isModal: st.modal, slotH: st.modal ? st.slotH : 0,
+      panelRole: st.modal ? 'dialog' : 'region', panelModal: st.modal ? 'true' : 'false',
+      panelStyle: st.modal
+        ? 'position: fixed; z-index: 1001; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(520px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); overflow-y: auto; overscroll-behavior: contain; box-sizing: border-box; padding: 12px 12px 10px; background: #F6F4F0; border-radius: 22px; display: flex; flex-direction: column; gap: 10px;'
+        : 'display: flex; flex-direction: column; gap: 12px;',
+      car: car ? view(car) : { name: '', specs: '', priceLabel: '', isCoupe: true, isSuv: false, isBoxy: false },
+      pill: fit.pill, pillNote: fit.note, fitHint: fit.hint, pillStyle: PILL + fit.style,
+      onQuery: function (e) { self.setState({ query: e.target.value, ex: null }); },
+      onMin: function (e) { self.setState({ min: e.target.value, priceError: false }); },
+      onMax: function (e) { self.setState({ max: e.target.value, priceError: false }); },
+      goBudget: function () {
+        if (!st.query.trim()) return;
+        self.setState({ step: 'budget', priceError: false });
+      },
+      startSearch: function () {
+        var a = num(self.state.min), b = num(self.state.max);
+        if (a == null && b == null) { self.setState({ priceError: true }); return; }
+        var c = findCar(self.state.query);
+        var res = outcome(c, a, b);
+        self.stop();
+        self.setState({ step: 'working', progress: 0, carId: c ? c.id : null, result: res, priceError: false });
+        self.timer = setInterval(function () {
+          var p = self.state.progress + 1;
+          if (p > 4) {
+            self.stop();
+            var r = self.state.result;
+            self.setState({ step: r === 'none' ? 'nomatch' : r === 'c' ? 'priceoff' : 'fit' });
+          } else {
+            self.setState({ progress: p });
+          }
+        }, 900);
+      },
+      openChat: function () { self.setState({ step: 'chat' }); },
+      createAccount: function () { self.setState({ step: 'account' }); },
+      closeModal: function () {
+        if (!self.state.modal) return;
+        // Close and reset the search; keep the page exactly where the viewer was.
+        var slot = document.getElementById('suche');
+        var above = slot && slot.getBoundingClientRect().bottom < 0, before = self.state.slotH;
+        self.stop();
+        self.setState(Object.assign({}, FRESH));
+        if (!above) return;
+        requestAnimationFrame(function () { requestAnimationFrame(function () {
+          var el = document.getElementById('suche'), d = el ? el.offsetHeight - before : 0;
+          if (d) window.scrollBy({ top: d, left: 0, behavior: 'instant' });
+        }); });
+      },
+      reset: function () { self.stop(); self.setState(Object.assign({}, FRESH, { modal: self.state.modal, slotH: self.state.slotH })); }
+    };
+  }
+}
+window.__start(Component);
+</script>
+</body>
+</html>
